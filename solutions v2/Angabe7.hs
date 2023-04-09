@@ -1,10 +1,5 @@
 module Angabe7 where
-
-{- 1. Vervollstaendigen Sie gemaess Angabentext!
-   2. Löschen Sie keine Deklarationen aus diesem Rahmenprogramm, auch nicht die Modulanweisug!
-   3. Achten Sie darauf, dass Gruppe Leserechte fuer Ihre Abgabedatei hat!
--}
-
+   
 -- Natuerliche Zahlen, ganze Zahlen
 type Nat0 = Integer
 type Zett = Integer
@@ -63,11 +58,6 @@ type FRB   = Finales_Rechenband
 
 -- Simulatorausgabe
 data Sim_Ausgabe = SA FIZ FLSKP FRB
-
-
-
-
-
 
 -- Funktionen ----------------------------------------------------------------------------------------------------------------------------
 
@@ -186,16 +176,6 @@ instance Show Sim_Ausgabe where
    show (SA iz pos (RB U _)) = "IZ: " ++ show iz ++ " // LSKP: " ++ show pos ++ " BI: Leer"
    show (SA iz pos (RB (B min max) band)) = "IZ: " ++ show iz ++ " // LSKP: " ++ show pos ++ " BI: " ++ show min ++ ">" ++ show (b2str band min max) ++ "<" ++ show max
 
-
-
-
-
-
-
-
-
-
-
 -- Test Cases -------------------------------------------------------------------------------------------------------------------------------
 
 -- akt_band
@@ -216,12 +196,6 @@ b2Updated = akt_band b2 1 (Z '|')
 
 -- akt_rechenband
 
-
-
-
-
-
-
 -- (a) Komforteingabe
 
 -- (b) Zulässige Turingtafel
@@ -237,8 +211,6 @@ b2Updated = akt_band b2 1 (Z '|')
 -- (g) Truingmaschinensimulator (sim)
 
 -- (h) Simulatorausgabe (instance Show Sim Ausgabe)
-
-
 
 -- zeige Zustand
 tt :: Turingtafel
@@ -261,10 +233,6 @@ z2 = GZ tt rb2 0 1
 
 test1 :: Bool
 test1 = zeige_zustand z2 == "(IZ:0,LSK:1,B:unbeschrieben)"
-
-
-
-
 
 taf2 :: [(Integer, Bandalphabet, Befehl, Integer)]
 taf2 = [(0, Blank  ,Bewege_LSK_nach Rechts,1),

@@ -1,11 +1,7 @@
 module Angabe2 where
-
-
 import Data.List
 
-
 type Nat0 = Integer
-
 
 -- Aufgabe A.1
 
@@ -41,7 +37,6 @@ ist_nullbp n
   where numberOf0s = countBin0s n
         relevPrimes = takeWhile (<= numberOf0s) primes
 
-
 -- returns a binary representation of the non-negative paramter
 -- True = 1, False = 0. 
 -- "little-endian" order, i.e. 8 = [F,F,T]
@@ -56,14 +51,11 @@ countOccurances e (x:xs)
   | e == x = 1 + countOccurances e xs
   | otherwise = countOccurances e xs
 
--- 
-
 -- copied from Prof's slides
 primes :: [Integer]
 primes = sieve [2..]
 sieve :: [Integer] -> [Integer]
 sieve (x:xs) = x : sieve [y | y <- xs, mod y x > 0]
-
 
 -- Aufgabe A.2
 
@@ -92,8 +84,6 @@ count01bps (x:xs) = let
                                   Nein -> 0
   in
     (i_0 + step_0, i_1 + step_1)
-
-
 
 -- Aufgabe A.3
 
@@ -126,7 +116,6 @@ splitOn f xs = let
   (run,rest) = break f xs
   in run : splitOn f (drop 1 rest)
 
-
 -- Aufgabe A.4
 
 type Hammingabstand = Int
@@ -149,7 +138,6 @@ hM' xss
   | otherwise = res
   where res = minimum [pairHM a b | (a,b) <- allPairs xss]
 
-
 -- reusable
 -- gives all pairs of a list's elements
 --    e.g. allPairs [1,2,3] ->> [(1,2),(1,3),(2,3)]
@@ -165,8 +153,6 @@ allPairs xs = [ (a,b) | i <- [0..length xs - 2],
                         let a = head subl,
                         b <- drop 1 subl
               ]
-
-
 
 -- returns the Hamming-Distance of two lists
 -- looking at just the first "min (length fstList) (length sndList)" elements of the lists

@@ -2,11 +2,6 @@ module Angabe1 where
 
 type Nat1 = Int
 
-{- 1. Vervollstaendigen Sie gemaess Angabentext!
-   2. LÃ¶schen Sie keine Deklarationen aus diesem Rahmenprogramm!
-   3. Achten Sie darauf, dass Gruppe Leserechte fuer Ihre Abgabedatei hat!
--}  
-
 -- Aufgabe A.1
 
 -- Testfälle aus der Angabe 
@@ -45,7 +40,6 @@ revQuicksort (x:xs) =
 nub' :: Eq a => [a] -> [a] -- entfernt alle vielfachen aus der Liste m (ist eigentlich im Data.List Modul)
 nub' [] = []
 nub' (x:xs) = x : filter (/= x) (nub' xs)
-
 
 -- Aufgabe A.2
 

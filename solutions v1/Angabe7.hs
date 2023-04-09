@@ -64,7 +64,6 @@ type FRB   = Finales_Rechenband
 -- Simulatorausgabe
 data Sim_Ausgabe = SA FIZ FLSKP FRB
 
-
 -- Aufgabe A.1
 
 akt_band :: Band -> Bandfeld -> Bandalphabet -> Band
@@ -85,7 +84,6 @@ akt_rechenband (RB (B min max) band) feld c =
             | c /= Blank && feld > max = B min feld
             | otherwise = B min max
 
-
 -- -- Aufgabe A.2 (a) bis (h)
 
 wandle_in_rb :: [Zeichenvorrat] -> Rechenband
@@ -93,7 +91,6 @@ wandle_in_rb [] = RB U $ const Blank
 wandle_in_rb band = RB (B 1 max) $ \f -> if 1 <= f && f <= max then Z (band !! (fromIntegral $ f-1)) else Blank
     where
         max = fromIntegral $ length band
-
 
 -- Zulaessige Turingtafeln
 ist_zulaessige_Turingtafel :: Turingtafel -> Bool
@@ -110,15 +107,11 @@ transition (gz@(GZ tafel (rb@(RB _ band)) zustand pos)) = GZ tafel rb_neu zustan
             Just (_,_,Bewege_LSK_nach Links, z2) -> (rb, z2, pos-1)
             Just (_,_,Bewege_LSK_nach Rechts, z2) -> (rb, z2, pos+1)
 
-
 aktive_zeile :: GZustand -> Maybe Zeile
 aktive_zeile (GZ tafel (RB _ band) zustand pos) = 
     find (\(iz,z,_,_) -> iz == zustand && z == zeichen) tafel
     where
         zeichen = band pos
-
-
-
 
 spur :: GZustand -> Spur
 spur gz = gz : case aktive_zeile gz of
@@ -126,7 +119,6 @@ spur gz = gz : case aktive_zeile gz of
     Just _ -> spur folgezustand
     where
         folgezustand = transition gz
-
 
 zeige_zustand :: GZustand -> String
 zeige_zustand (GZ _ (RB minmax band) zustand pos) =
@@ -143,7 +135,6 @@ zeige_zustand (GZ _ (RB minmax band) zustand pos) =
 
 zeige_spur :: Spur -> String
 zeige_spur = intercalate "->>" . map zeige_zustand
-
 
 sim :: Sim_Eingabe -> Sim_Ausgabe
 sim (SE tafel band) = 

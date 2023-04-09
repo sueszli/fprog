@@ -1,10 +1,5 @@
 module Angabe5 where
 
-{- 1. Vervollstaendigen Sie gemaess Angabentext!
-   2. Löschen Sie keine Deklarationen aus diesem Rahmenprogramm, auch nicht die Modulanweisug!
-   3. Achten Sie darauf, dass Gruppe Leserechte fuer Ihre Abgabedatei hat!
--}
-
 type Nat0                = Int
 type Nat1                = Int
 type Vorname             = String
@@ -27,15 +22,10 @@ data Groesste_Wahlverlierer = GWV [Partei]
                              | Keine 
                              | Analyse_nicht_moeglich deriving (Eq,Show)
 
-
 -- Aufgabe A.1
 
 ist_gueltiger_Wahlvorschlag :: Wahlvorschlag -> Bool
 ist_gueltiger_Wahlvorschlag list = not $ null list
-
-{- ist_gueltiger_Wahlvorschlag geht folgendermassen vor: ... 
--}
-
 
 -- Aufgabe A.2
 {-
@@ -61,10 +51,6 @@ checkDuplicates (x:xs) = x `notElem` xs && checkDuplicates xs
 checkRange :: Stimmzettel -> Int -> Bool
 checkRange xs k = foldl (\acc x -> acc && (x >= 1) && (x <= k)) True xs
 
-{- ist_gueltiger_Stimmzettel geht folgendermassen vor: ... 
--}
- 
-
 -- Aufgabe A.3
 
 trenne_Stimmzettel :: Wahlvorschlag -> Wahl -> (Gueltig,Ungueltig)
@@ -74,11 +60,7 @@ getGueltig :: Wahlvorschlag -> Wahl -> Gueltig
 getGueltig candidates = foldr (\x acc -> if ist_gueltiger_Stimmzettel candidates x then x:acc else acc) []
 
 getUngueltig :: Wahlvorschlag -> Wahl -> Ungueltig 
-getUngueltig candidates = foldr (\x acc -> if ist_gueltiger_Stimmzettel candidates x then acc else x:acc) []
-
-{- trenne_Stimmzettel geht folgendermassen vor: ... 
--}
- 
+getUngueltig candidates = foldr (\x acc -> if ist_gueltiger_Stimmzettel candidates x then acc else x:acc) [] 
 
 -- Aufgabe A.4
 
@@ -94,10 +76,6 @@ isValid candidates = foldl (\acc x -> acc && ist_gueltiger_Stimmzettel candidate
 
 countHeads :: Wahl -> Int -> Int
 countHeads xs k = foldl (\acc x -> acc + (if head x == k then 1 else 0)) 0 xs
-
-{- auszaehlen geht folgendermassen vor: ... 
--}
-
 
 -- Aufgabe A.5
 
@@ -117,10 +95,6 @@ clearWinner candidates p1@(x:xs)
                            | fst x > total `div` 2 = Just (candidates !! (snd x - 1), snd x)
                            | otherwise = clearWinner candidates xs
                            where total = sum $ map fst p1
-
-{- wahlsieger geht folgendermassen vor: ... 
--}
-
 
 -- Aufgabe A.6
 
@@ -153,10 +127,6 @@ findIndexesOfVal (x:xs) i min
                      | x == min  = i : findIndexesOfVal xs (i+1) min
                      | otherwise = findIndexesOfVal xs (i+1) min
 
-{- ausscheiden geht folgendermassen vor: ... 
--}
-
-
 -- Aufgabe A.7
 
 wahlausgang :: Wahlvorschlag -> Wahl -> Wahlausgang
@@ -176,10 +146,6 @@ wahlausgang candidates allVotes
 conv :: Maybe a -> a
 conv (Just a) = a
 
-{- wahlausgang eht folgendermassen vor: ... 
--}
-
-
 -- Aufgabe A.8
 
 wahlanalyse :: Wahlvorschlag -> Wahl -> Groesste_Wahlverlierer
@@ -198,7 +164,3 @@ getParties = foldr (\(WW _ _ p) acc -> p:acc) []
 
 removeDuplicates :: [Partei] -> [Partei]
 removeDuplicates = foldr (\x acc -> if x `elem` acc then acc else x:acc ) []
-
-
-{- wahlanalyse geht folgendermassen vor: ... 
--}

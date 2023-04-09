@@ -1,21 +1,12 @@
 > module Angabe3 where
 
-
-1. Vervollstaendigen Sie gemaess Angabentext!
-2. Loeschen Sie keine Deklarationen aus diesem Rahmenprogramm, auch nicht die Modulanweisug!
-3. Achten Sie darauf, dass Gruppe Leserechte fuer Ihre Abgabedatei hat!
-
-
 > type UntereSchranke = Int
 > type ObereSchranke  = Int
 > data Intervall  = IV (UntereSchranke,ObereSchranke)
 >                       | Leer
 >                       | Ungueltig
 
-
-
 Allgemeine Hilfsfunktionen:
-
 
 > istLeer :: Intervall -> Bool
 > istLeer (IV (a,b)) = if a > b then True else False
@@ -49,9 +40,7 @@ Allgemeine Hilfsfunktionen:
 >   | otherwise = [a..b]
 > toList Ungueltig = error "Falscher Aufruf @ toList"   
 
-
 Aufgabe A.1
-
 
 > instance Show Intervall where
 >   show Ungueltig = "Kein Intervall"
@@ -61,12 +50,7 @@ Aufgabe A.1
 >       | a == b = show a
 >       | otherwise = "<" ++ show a ++ "," ++ show b ++ ">"
 
-
-Die Instanzdeklaration fuer Show geht folgendermassen vor: ... 
- Sie ordnet jedem Typ die richtige Show-Darstellung zu.
-
 Aufgabe A.2
-
 
 > instance Eq Intervall where
 >   Ungueltig == _ = error "Vergleich nicht moeglich"
@@ -82,15 +66,7 @@ Aufgabe A.2
 >       | (a == c) && (b == d) = True -- gleich
 >       | otherwise = False
 
-
-Die Instanzdeklaration fuer Eq geht folgendermassen vor: ... 
- Jeder Vergleich mit Ungueltig führt zu einem Error.
- Bei einem Vergleich mit Leer wird überprüft ob das Intervall Leer ist oder nicht.
- Beim Vergleich von 2 Intervallen wird überprüft ob sie entweder beide Leer sind oder die Werte gleich sind.
-
-
 Aufgabe A.3
-
 
 > instance Ord Intervall where
 >   a `compare` b
@@ -101,14 +77,7 @@ Aufgabe A.3
 >       | fst' a <= fst' b && snd' a >= snd' b = GT
 >       | otherwise = error "Vergleich nicht moeglich"
 
-
-Die Instanzdeklaration fuer Ord geht folgendermassen vor: ... 
- Fast ident zur vorherigen Aufgabe, mit dem Unterschied, dass Intervall a < Intervall b wenn a eine Teilmenge von B ist.
- Das führt zu einem Problem: 
-    Wenn a und b keine Teilmengen von einander sind sondern nur eine Schnittmenge haben führt es zu einem Error.
-
 Aufgabe A.4
-
 
 > multiplyFirsts :: Intervall -> Intervall -> Int
 > multiplyFirsts x y = minimum [(fst' x * fst' y), (fst' x * snd' y), (snd' x * fst' y), (snd' x * snd' y)]
@@ -159,13 +128,7 @@ Aufgabe A.4
 
 >   fromInteger _ = error "Vergleich nicht moeglich"
 
-
-
-Die Instanzdeklaration fuer Num geht folgendermassen vor: ... 
-    Wie in Angabe beschrieben.
-
 Aufgabe A.5
-
 
 > instance Enum Intervall where
 >    succ a
@@ -179,12 +142,7 @@ Aufgabe A.5
 >        | otherwise = error "Operation nicht moeglich"
 >    toEnum a = IV(a, a)
 
-
-Die Instanzdeklaration fuer Enum geht folgendermassen vor: ... 
-    Wie in Angabe beschrieben.
-
 Aufgabe A.6
-
 
 > class Kanonisch a where
 >  kanonisch :: a -> a
@@ -194,12 +152,7 @@ Aufgabe A.6
 >   kanonisch Leer = Leer
 >   kanonisch (IV (a,b)) = if a > b then Leer else (IV (a,b))
 
-
-Die Instanzdeklaration fuer Kanonisch geht folgendermassen vor: ... 
-    Wie die Funktion istLeer.
-
 Aufgabe A.7
-
 
 > class Element a where
 >  is_elem :: Int -> a -> Maybe Bool
@@ -210,12 +163,7 @@ Aufgabe A.7
 >        | istIV a = if i `elem` (toList a) then Just True else Just False
 >        | otherwise = Nothing
 
-
-Die Instanzdeklaration fuer Element geht folgendermassen vor: ... 
-    Wandelt a zu einer Liste um und bestimmt anschließend ob i ein Element ist.
-
 Aufgabe A.8
-
 
 > class Element a => Code a where
 >  codiere :: [Int] -> a
@@ -231,12 +179,7 @@ Aufgabe A.8
 >        | ist_lueckenlos list && ist_aufsteigend list = (IV (head list, last list))
 >        | otherwise = Ungueltig   
 
-
-Die Instanzdeklaration fuer Code geht folgendermassen vor: ... 
-    Transformation zu Liste zu inverse Transformation.
-
 Aufgabe A.9
-
 
 > class (Ord a,Enum a) => ExTest a where
 >  extrahiere  :: Maybe [a] -> [a]
@@ -265,7 +208,3 @@ Aufgabe A.9
 > findMinMax [] = []
 > findMinMax [x] = [x]
 > findMinMax xs = [(head xs)..(last xs)]
-
-
-Die Instanzdeklaration fuer ExTest geht folgendermassen vor: ... 
-    Wie in Angabe beschrieben.

@@ -1,12 +1,6 @@
 module Angabe2 where
 
-{- 1. Vervollstaendigen Sie gemaess Angabentext!
-   2. LÃ¶schen Sie keine Deklarationen aus diesem Rahmenprogramm, auch nicht die Modulanweisug!
-   3. Achten Sie darauf, dass Gruppe Leserechte fuer Ihre Abgabedatei hat!
--}
-
 type Nat0 = Integer
-
 
 -- Aufgabe A.1
 
@@ -67,7 +61,6 @@ boolMe False = Nein
    und abschließend wird ein Bool in das Ja/Nein Format umgewandelt
 -}
 
-
 -- Aufgabe A.2
 
 type Von           = Nat0
@@ -110,14 +103,12 @@ bool2Bin :: Bool -> Integer
 bool2Bin False = 0
 bool2Bin True  = 1
 
-
 {- anz01bps geht folgendermassen vor: ...
     für isPrime1 werden die vorherigen Methoden benutzt
     für isPrime0 werden die Bits geflipped und ebenso die vorherigen Methoden benutzt
 
     da das Output aber ein Bool ist wird sie auf 0,1 abgebildet
 -}
-
 
 -- Aufgabe A.3
 
@@ -133,7 +124,6 @@ lwi = words
 
 spaces = "        "
 l_test = "aa bb cc \t dd \n ee"
-
 
 -- meine Implementierung von words
 {-
@@ -151,7 +141,6 @@ example :: [[Char]]
 example = ('x' : "") : ["test"]
 -}
 
-
 {- lwi geht folgendermassen vor: ... 
     Es wird x von (x:xs) mit den Trenn-Zeichen verglichen.
     Wenn x ein Trenn-Zeichen ist, wird "" an der Berechnung von xs angehängt
@@ -163,7 +152,6 @@ example = ('x' : "") : ["test"]
 --> Gute Zusammenfassung mit einfachem code: https://jmmv.dev/2006/08/split-function-in-haskell.html
 -}
 
-
 -- Aufgabe A.4
 
 type Hammingabstand = Int
@@ -174,7 +162,6 @@ hM input
     | length input == 1 = 0
     | otherwise = minimum [h inp_i inp_j | (inp_i,i) <- zip input [0..], (inp_j,j) <- zip input [0..], i /= j] -- vergleicht quasi alle Einträge aus einem 2D Array, außer x == y
 
-
 h :: String -> String -> Int -- Aus vorherigem Arbeitsblatt
 h [] [] = 0
 h [] _  = -1
@@ -184,13 +171,10 @@ h wort1 wort2
   | head wort1   == head wort2   = 0 + h (tail wort1) (tail wort2)
   | otherwise                    = 1 + h (tail wort1) (tail wort2)
 
-
-
 t1 = hM ["Fahrrad", "Autobus"] -- 7
 t2 = hM ["1001", "1111", "1100"] -- 2
 t3 = hM ["Haskell", "Fortran", "Miranda", "Clojure"] -- 6
 t4 = hM["Haskell", "Java", "Prolog"] -- -1
-
 
 {- hM geht folgendermassen vor: ... 
     es werden aus dem Input 2 Tupel Listen gemacht:

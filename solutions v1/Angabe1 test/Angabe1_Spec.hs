@@ -1,4 +1,3 @@
-
 import Angabe1 (filtere)
 
 -- cabal/stack install hlint
@@ -27,12 +26,10 @@ main = hspec $ do
         modifyMaxSuccess (const 500) $ it "returns descending lists" $ property prop_filtere_descending
         it "is idempotent on filtere 1" $ property prop_filtere_specialIdempotent
 
-
 prop_filtere_descending :: Positive Int -> [Int] -> Bool
 prop_filtere_descending (Positive n) list = result == sortOn Down result
     where
         result = filtere n list
-
 
 prop_filtere_specialIdempotent :: [Int] -> Bool
 prop_filtere_specialIdempotent list = filtere 1 list == filtere 1 (filtere 1 list)

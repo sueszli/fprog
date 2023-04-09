@@ -1,15 +1,9 @@
 module Angabe5 where
 
-
 import Data.List (partition, sort, group, find, sortOn, groupBy)
 import Data.Maybe (listToMaybe, mapMaybe, fromMaybe)
 
 {-# ANN module "HLint: ignore" #-}
-
-{- 1. Vervollstaendigen Sie gemaess Angabentext!
-   2. Löschen Sie keine Deklarationen aus diesem Rahmenprogramm, auch nicht die Modulanweisug!
-   3. Achten Sie darauf, dass Gruppe Leserechte fuer Ihre Abgabedatei hat!
--}
 
 type Nat0                = Int
 type Nat1                = Int
@@ -32,7 +26,6 @@ data Wahlausgang         = Ungueltiger_Wahlvorschlag
 data Groesste_Wahlverlierer = GWV [Partei]
                              | Keine 
                              | Analyse_nicht_moeglich deriving (Eq,Show)
-
 
 -- Aufgabe A.1
 
@@ -108,7 +101,6 @@ ausscheiden wahl platz_1_stimmen =
                 . zip [1..]
                 $ platz_1_stimmen
 
-
 -- Aufgabe A.7
 
 wahlausgang :: Wahlvorschlag -> Wahl -> Wahlausgang
@@ -118,8 +110,6 @@ wahlausgang wahlvorschlag wahl
     | otherwise = wahlausgang2 wahlvorschlag [1..length wahlvorschlag] gueltige_Stimmzettel
     where
         (gueltige_Stimmzettel, _) = trenne_Stimmzettel wahlvorschlag wahl
-
-
 
 -- `wahlausgang`, aber mit der Zusatzinformation welche Kandidaten noch im Rennen sind
 -- 
@@ -136,7 +126,6 @@ wahlausgang2 wahlvorschlag noch_im_rennen wahl
 
         (naechster_durchgang, immer_noch_im_rennen) = ausscheiden2 noch_im_rennen wahl platz_1_Stimmen
         
-
 -- `ausscheiden`, aber mit der Zusatzinformation welche Kadidaten noch im Rennen sind
 ausscheiden2 :: [Wahlvorschlagsplatz] ->  Wahl -> [Platz_1_Stimmen] -> (Wahl, [Wahlvorschlagsplatz])
 ausscheiden2 noch_im_rennen wahl platz_1_stimmen =
@@ -155,8 +144,6 @@ ausscheiden2 noch_im_rennen wahl platz_1_stimmen =
                 . zip [1..]
                 $ platz_1_stimmen
 
-
-
 -- Aufgabe A.8
 
 wahlanalyse :: Wahlvorschlag -> Wahl -> Groesste_Wahlverlierer
@@ -167,7 +154,6 @@ wahlanalyse wahlvorschlag wahl
     where
         (gueltige_Stimmzettel, _) = trenne_Stimmzettel wahlvorschlag wahl
         parteien = map head . group . sort . map (\(WW _ _ p) -> p) $ wahlvorschlag
-
 
 -- `wahlanalyse`, aber mit der Zusatzinformation:
 -- * welche Kandidaten noch im Rennen sind

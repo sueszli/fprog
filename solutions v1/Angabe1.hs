@@ -11,9 +11,7 @@ filtere n xs
   | n < 1 = error "Nat1 required on param 1"
   | otherwise = filtr n (reverse $ sort xs)
 
-
-
--- pre: xs is finite, sorted descendingly
+-- pre: xs is finite
 filtr :: Nat1 -> [Int] -> [Int]
 filtr _ [] = []
 filtr n list@(x:_) =
@@ -21,8 +19,6 @@ filtr n list@(x:_) =
     streakLen = length $ takeWhile (x==) list
   in
     [x | streakLen == n] ++ filtr n (drop streakLen list)
-
-
 
 -- NB: destructuring via Patterns (at once List and tuple patterns)
 kommt_vor :: Int -> [(Int,Int)] -> Bool
@@ -43,7 +39,7 @@ aus xs =
 findMaxOccur :: Eq a => [a] -> Int
 findMaxOccur xs = findMaxOccur' 0 xs
 
--- precondition: initial value of first parameter = 0
+-- pre: initial value of first parameter = 0
 findMaxOccur' :: Eq a => Int -> [a] -> Int
 findMaxOccur' n [] = n
 findMaxOccur' n xs@(x:_) =
@@ -66,10 +62,8 @@ h' (s:ss) (t:ts) n
   | s == t = h' ss ts n
   | s /= t = h' ss ts (n+1)
 
-
 -- Papier+Bleistift
 g :: Int -> Int
 g n = if n == 0 then 0 else g (n-1) + 3
 h :: Int -> Int
 h n = if n == 0 then 0 else 3 + h (n-1)
--- mal

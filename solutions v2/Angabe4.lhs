@@ -4,9 +4,7 @@
 2. Loeschen Sie keine Deklarationen aus diesem Rahmenprogramm!
 3. Achten Sie darauf, dass Gruppe Leserechte fuer Ihre Abgabedatei hat!
 
-
 Aufgabe A.1
-
 
 > type Nat0   = Int
 > type Ebene  = Nat0
@@ -46,17 +44,13 @@ Aufgabe A.1
 > countAllNodes (Blatt _) = 1
 > countAllNodes (Knoten _ l r) = 1 + countAllNodes l + countAllNodes r
 
-
 breitest geht folgendermassen vor: ...
     breitest Funktion: Bestimmt Baumebene mit den meisten (mindestens so viele wie auf jeder anderen Ebene) Nodes --> Ebene 0 = Wurzel
     findMaxIndices: die Indizes von dem höchsten Wert in Liste finden
     levelList: Liste in der an Stelle 1 die Nodes in Level 1 sind usw
     findLevels: findet Baumtiefe - 1 -> gesamtanzahl der levels
 
-
-
 Aufgabe A.2
-
 
 > tae :: BBaum -> Ebene -> Maybe [Text]
 > tae tree n
@@ -74,9 +68,6 @@ Aufgabe A.2
 >     | n > 0 = valsAtLevel l (n-1) ++ valsAtLevel r (n-1)
 >     | otherwise = []
 
-tae geht folgendermassen vor: ...
-    Sie ist eine leichte Abänderung der vorherigen Funktion
-
 Aufgabe A.3
 
 > data TBaum    = TB
@@ -93,14 +84,7 @@ Aufgabe A.3
 > transform TB w = TB' w 
 > transform (TK l m r) w = TK' w (transform l (w ++ [L])) (transform m ( w ++ [M])) (transform r (w ++ [R]))
 
-awi geht folgendermassen vor: ...
-    Erstellt ein TBaum' rekursiv und füllt Weg basierend auf Rekursionsebene
-
-
-
-
 Aufgabe A.4
-
 
 > type Info a = [a]
 > data Baum a = B (Info a)
@@ -136,14 +120,7 @@ Aufgabe A.4
 > sameContent [] _ = False
 > sameContent (x:xs) (y:ys) = (x == y) && (sameContent xs ys)
 
-
-Die Instanzdeklarationen gehen folgendermassen vor: ...
-    Sie löst die Aufgabe.
-
-
-
 Aufgabe A.5
-
 
 > type UntereSchranke = Int
 > type ObereSchranke  = Int
